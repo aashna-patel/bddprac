@@ -5,7 +5,7 @@ import cucumber.api.junit.Cucumber;
 import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features = "src/test/resources", tags = "@BackPackCapacityTest")
+@CucumberOptions(features = "src/test/resources", tags = "@Test", dryRun = true, strict = true)
 
 public class RunCukesTest {
 }
