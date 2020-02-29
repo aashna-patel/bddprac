@@ -6,6 +6,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 import org.hamcrest.Matchers;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 import java.util.List;
@@ -80,10 +81,11 @@ public class FilterSteps {
     @When("^I apply filter type \"([^\"]*)\" and price \"([^\"]*)\"$")
     public void i_apply_filter_type_and_price(String type, String price) {
         resultsPage.selectTwoFilters(type, price);
+
     }
 
     @Then("^I should be able to see \"([^\"]*)\"$")
-    public void i_should_be_able_to_see(String twoFilters) throws Throwable {
+    public void i_should_be_able_to_see(String twoFilters) {
         String actual = resultsPage.TwoFilters();
         assertThat(actual, startsWith(twoFilters));
     }

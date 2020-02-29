@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class ResultsPage extends DriverManager {
     @FindBy(css = ".findability-facet__rating-label")
@@ -146,6 +147,7 @@ public class ResultsPage extends DriverManager {
     public void selectTwoFilters(String type, String price) {
         selectTypeFilter(type);
         selectPriceFilter(price);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }
     public String TwoFilters(){
        return driver.findElement(By.cssSelector(".applied-filters__header.findability-facet__header")).getText();
