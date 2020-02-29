@@ -1,17 +1,16 @@
 package com.mavenit.cucumber.StepDefinitions;
 
-import com.mavenit.cucumber.PageObject.HomePage;
+
 import com.mavenit.cucumber.PageObject.ResultsPage;
-import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import cucumber.api.java.eo.Do;
+
 import org.hamcrest.Matchers;
+
 
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.core.Every.everyItem;
@@ -74,8 +73,20 @@ public class FilterSteps {
 
     @Then("^I should be able to see refined results price \"([^\"]*)\"$")
     public void i_should_be_able_to_see_refined_results_price(String priceExpected) {
-List<String> actual= resultsPage.getPriceFIlter();
-assertThat(actual, everyItem(is(greaterThanOrEqualTo(priceExpected))));
+        List<String> actual = resultsPage.getPriceFilter();
+        assertThat(actual, everyItem(is(greaterThanOrEqualTo(priceExpected))));
     }
+
+    @When("^I apply filter type \"([^\"]*)\" and price \"([^\"]*)\"$")
+    public void i_apply_filter_type_and_price(String type, String price) {
+        resultsPage.selectTwoFilters(type, price);
+    }
+
+    @Then("^I should be able to see \"([^\"]*)\"$")
+    public void i_should_be_able_to_see(String twoFilters) throws Throwable {
+        String actual = resultsPage.TwoFilters();
+        assertThat(actual, startsWith(twoFilters));
+    }
+
 
 }
