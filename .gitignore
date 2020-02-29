@@ -1,4 +1,7 @@
 target/
 .idea
 argosrakesh.iml/
+.DS_Store
+
+
 

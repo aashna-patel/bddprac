@@ -17,7 +17,7 @@ Feature: filter
     And I apply filter category "Smart watches"
     Then I should be able to see refined results category "Watch"
 
-  @Type
+  @TypeFilter
   Scenario: filter by type
     Given I am on homepage
     When I search for product "nike"
