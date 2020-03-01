@@ -38,14 +38,14 @@ Feature: filter
     And I apply filter price "£250 - £500"
     Then I should be able to see refined results price "250"
 
-    @ColourFilter
-      Scenario: filter by colour
-      Given I am on homepage
-      When I search for product "Nike"
-      And I apply filter colour "Yellow"
-      Then I should be able to see refined results colour "Yellow"
+  @ColourFilter
+  Scenario: filter by colour
+    Given I am on homepage
+    When I search for product "Nike"
+    And I apply filter colour "Yellow"
+    Then I should be able to see refined results colour "Yellow"
 
-    @SelectTwoFilters
+  @SelectTwoFilters
   Scenario: filter by type and price
     Given I am on homepage
     When I search for product "nike"
