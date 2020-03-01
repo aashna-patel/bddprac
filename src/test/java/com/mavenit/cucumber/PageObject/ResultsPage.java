@@ -43,6 +43,15 @@ public class ResultsPage extends DriverManager {
     @FindBy(css = ".ProductCardstyles__PriceText-l8f8q8-14.gHrEdF")
     private List<WebElement> priceSelection;
 
+    @FindBy(css = ".filter-list")
+    private List<WebElement> filterSelection;
+
+    @FindBy(css = ".color-label")
+    private List<WebElement> colourWebElements;
+
+    @FindBy(css = ".filter-list")
+    private List<WebElement> colourSelection;
+
     public void selectFilter(String filterOption) {
         new WebDriverWait(driver, 10).until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector(".findability-facet__rating-label"), 5));
         for (WebElement review : ratingWebElements) {
@@ -125,7 +134,7 @@ public class ResultsPage extends DriverManager {
     }
 
     public void selectPriceFilter(String priceOption) {
-     //   driver.findElement(By.cssSelector("div[data-facet='price']>.Accordionstyles__ButtonLink-pegw6j-3.bRQRVq")).click();
+        driver.findElement(By.cssSelector("div[data-facet='price']>.Accordionstyles__ButtonLink-pegw6j-3.bRQRVq")).click();
         for (WebElement price : priceWebElements) {
             String availableFilter = price.getText();
             if (availableFilter.equalsIgnoreCase(priceOption)) {
@@ -144,14 +153,42 @@ public class ResultsPage extends DriverManager {
         return priceList;
     }
 
+    public void selectColourFilter(String colourOption) {
+        driver.findElement(By.cssSelector("div[data-facet='colour']> .Accordionstyles__Button-pegw6j-2.gJFbvj")).click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        driver.findElement(By.cssSelector("div[data-facet='colour']>.Accordionstyles__ButtonLink-pegw6j-3.bRQRVq")).click();
+        for (WebElement colour : colourWebElements) {
+            String colourFilter = colour.getText();
+            if (colourFilter.equalsIgnoreCase(colourOption)) {
+                colour.click();
+            }
+        }
+    }
+
+    public List<String> getColourFilter() {
+        List<String> colourList = new ArrayList<>();
+        for (WebElement colour : colourSelection) {
+            String colours = colour.getText();
+            colourList.add(colours);
+        }
+        return colourList;
+    }
+
     public void selectTwoFilters(String type, String price) {
         selectTypeFilter(type);
         selectPriceFilter(price);
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }
-    public String TwoFilters(){
-       return driver.findElement(By.cssSelector(".applied-filters__header.findability-facet__header")).getText();
-    }
 
+    public List<String> TwoFilters() {
+        List<String> filterList = new ArrayList<>();
+        for (WebElement filter : filterSelection) {
+            String filterTag = filter.getText();
+            filterList.add(filterTag);
+        }
+        return filterList;
+    }
 }
+
+
 

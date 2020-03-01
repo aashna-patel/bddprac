@@ -3,14 +3,14 @@ Feature: filter
   I want to apply filters
   So that I can find desired product
 
-  @Review
+  @ReviewFilter
   Scenario: filter by review
     Given I am on homepage
     When I search for product "Nike"
     And I apply filter review "2or more"
     Then I should be able to see refined results review "2"
 
-  @Category
+  @CategoryFilter
   Scenario: filter by category
     Given I am on homepage
     When I search for product "nike"
@@ -24,7 +24,7 @@ Feature: filter
     And I apply filter type "Armbands"
     Then I should see refined results of type "Armbands"
 
-  @BackPackCapacity
+  @BackPackCapacityFilter
   Scenario: filter by backpack capacity
     Given I am on homepage
     When I search for product "Nike"
@@ -38,12 +38,19 @@ Feature: filter
     And I apply filter price "£250 - £500"
     Then I should be able to see refined results price "250"
 
-    @TwoProducts
+    @ColourFilter
+      Scenario: filter by colour
+      Given I am on homepage
+      When I search for product "Nike"
+      And I apply filter colour "Yellow"
+      Then I should be able to see refined results colour "Yellow"
+
+    @SelectTwoFilters
   Scenario: filter by type and price
     Given I am on homepage
     When I search for product "nike"
     And I apply filter type "Holdalls" and price "£15 - £20"
-    Then I should be able to see "2 Applied Filters"
+    Then I should be able to see "£15 - £20" and "Holdall"
 
 
 

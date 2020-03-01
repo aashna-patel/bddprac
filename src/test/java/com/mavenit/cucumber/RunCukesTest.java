@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         features = "src/test/resources",
-        tags = "  @TwoProducts",
+        tags = "@ColourFilter",
         plugin = {"json:target/cucumber.json"}
 )
 public class RunCukesTest {
