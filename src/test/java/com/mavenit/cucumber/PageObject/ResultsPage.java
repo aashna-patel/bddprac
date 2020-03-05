@@ -52,6 +52,9 @@ public class ResultsPage extends DriverManager {
     @FindBy(css = ".filter-list")
     private List<WebElement> colourSelection;
 
+    @FindBy(css = ".ProductCardstyles__Title-l8f8q8-12")
+    private List<WebElement> productWebElements;
+
     public void selectFilter(String filterOption) {
         new WebDriverWait(driver, 10).until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector(".findability-facet__rating-label"), 5));
         for (WebElement review : ratingWebElements) {
@@ -187,6 +190,16 @@ public class ResultsPage extends DriverManager {
             filterList.add(filterTag);
         }
         return filterList;
+    }
+
+    public void selectRandomProduct(String randomProduct) {
+        for (WebElement product : productWebElements) {
+            String availableProducts = product.getText();
+            if (availableProducts.equalsIgnoreCase(randomProduct)) {
+                product.click();
+                break;
+            }
+        }
     }
 }
 
