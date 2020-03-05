@@ -7,6 +7,7 @@ Feature: adding product to basket
   Scenario: adding one product to basket
     Given I am on homepage
     When I search for product "nike"
-    And I select a product ""
+    And I apply filter category "Smart watches"
+    And I select a product "Apple Watch Nike S5 GPS 40mm"
     And I click add to trolley
-    Then I should be able to see product "" in trolley
+    Then I should be able to see product "Apple Watch Nike S5 GPS 40mm" in trolley
