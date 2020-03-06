@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources",
         dryRun = false,
         strict = false,
+        tags = "@addTwoProducts",
         plugin = {"json:target/cucumber.json"}
 )
 public class RunCukesTest {
