@@ -37,4 +37,3 @@ Feature: adding product to trolley
     And I click go to trolley
     Then I should be able to see "2" products in trolley
 
-
