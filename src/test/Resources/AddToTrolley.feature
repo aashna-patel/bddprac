@@ -24,6 +24,16 @@ Feature: adding product to trolley
     And I increase the quantity "2"
     Then I should be able to see refined quantity size "2"
 
+  @quantityTest2
+  Scenario: increasing the quantity of products on product description page
+    Given I am on homepage
+    When I search for product "Adidas"
+    And I select a product "Adidas Bum Bag - Black"
+    And I increase the quantity on product description page to "3"
+    And I click add to trolley
+    And I click go to trolley
+    Then I should be able to see refined quantity size "3"
+
   @addTwoProducts
   Scenario: adding two different products to trolley
     Given I am on homepage
@@ -32,9 +42,8 @@ Feature: adding product to trolley
     And I click add to trolley
     And I click continue Shopping
     And I search for product "watch"
-    And I select a product "Skagen Kulor Blue Silicone Strap Watch"
+    And I select a product "Huawei Watch GT 2 Smart Watch"
     And I click add to trolley
     And I click go to trolley
     Then I should be able to see "2" products in trolley
-
-
+    And I should be able to see "Adidas Power V 25.75L Backpack - Grey" and "Huawei Watch GT 2 Smart Watch" in Trolley
