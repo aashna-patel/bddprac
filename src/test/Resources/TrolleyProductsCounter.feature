@@ -24,4 +24,3 @@ Feature: trolley products counter
       And I select a product "Argos Home Inspire 5 Light Chandelier - Clear"
       And I click add to trolley
       Then I should be able to see "2" products in trolley
-

@@ -16,7 +16,7 @@ public class trolleyPage extends DriverManager {
     private List<WebElement> shopSelection;
 
     public void addToTrolley() {
-        driver.findElement(By.cssSelector("button[data-test='component-att-button']")).click();
+        driver.findElement(By.cssSelector("button[data-test='component-att-button']")).sendKeys(Keys.ENTER);
     }
 
     public void goToTrolley() {
@@ -57,7 +57,7 @@ public class trolleyPage extends DriverManager {
 
     public void selectStore() {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        List<WebElement> reserve= driver.findElements(By.cssSelector("button[data-el^='store-selector-result__select-store-button--']"));
+        List<WebElement> reserve = driver.findElements(By.cssSelector("button[data-el^='store-selector-result__select-store-button--']"));
         reserve.get(0).click();
     }
 
@@ -74,7 +74,4 @@ public class trolleyPage extends DriverManager {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }
 }
-
 //.lg-5--none [placeholder="Enter postcode or town"] for enter postcode
-
-

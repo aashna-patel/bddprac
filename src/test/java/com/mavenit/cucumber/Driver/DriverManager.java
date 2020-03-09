@@ -14,51 +14,55 @@ import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 public class DriverManager {
-    public DriverManager(){
+    public DriverManager() {
         PageFactory.initElements(driver, this);
     }
 
     public static WebDriver driver;
-    private String browser= "";
-    public void openBrowser(){
-        switch (browser){
+    private String browser = "";
+
+    public void openBrowser() {
+        switch (browser) {
             case "ie":
                 WebDriverManager.iedriver().setup();
-                driver= new InternetExplorerDriver();
+                driver = new InternetExplorerDriver();
                 break;
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
-                driver= new FirefoxDriver();
+                driver = new FirefoxDriver();
                 break;
             default:
                 //try {
-                  //  remoteRun();
+                //  remoteRun();
                 //} catch (MalformedURLException e) {
-                  //  e.printStackTrace();
+                //  e.printStackTrace();
                 //}
 
                 WebDriverManager.chromedriver().setup();
-                driver= new ChromeDriver();
+                driver = new ChromeDriver();
                 break;
         }
     }
-   // public void remoteRun() throws MalformedURLException {
-     //   DesiredCapabilities cap= new DesiredCapabilities();
-       // cap.setBrowserName("chrome");
-        //WebDriverManager.chromedriver().setup();
-        //driver= new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), cap);
+    // public void remoteRun() throws MalformedURLException {
+    //   DesiredCapabilities cap= new DesiredCapabilities();
+    // cap.setBrowserName("chrome");
+    //WebDriverManager.chromedriver().setup();
+    //driver= new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), cap);
     //}
 
-    public void maxBrowser(){
+    public void maxBrowser() {
         driver.manage().window().maximize();
     }
-    public void navigateTo(String Url){
+
+    public void navigateTo(String Url) {
         driver.get(Url);
     }
-    public void applyImplicitWait(){
+
+    public void applyImplicitWait() {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
-    public void closeBrowser(){
+
+    public void closeBrowser() {
         driver.quit();
     }
 }

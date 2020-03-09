@@ -47,3 +47,17 @@ Feature: adding product to trolley
     And I click go to trolley
     Then I should be able to see "2" products in trolley
     And I should be able to see "Adidas Power V 25.75L Backpack - Grey" and "Huawei Watch GT 2 Smart Watch" in Trolley
+
+  @addToBasket
+  Scenario Outline:adding multiple products
+    Given I am on homepage
+    When I search for product <BrandName>
+    And I select a product <product>
+    And I click add to trolley
+    And I click go to trolley
+    Then I should be able to see <product> in Trolley
+    Examples:
+      | BrandName | product                                          |
+      | "nike"    | "Nike Radiate Club Phantom 24L Backpack - Beige" |
+      | "adidas"  | "Adidas Euro Size 5 Football - White"            |
+      | "puma"    | "Puma Core Base 14L Backpack - Black and Gold"   |

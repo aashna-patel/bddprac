@@ -29,7 +29,4 @@ public class commonSteps {
     public void i_select_a_product(String product) {
         resultsPage.selectRandomProduct(product);
     }
-
-
 }
-

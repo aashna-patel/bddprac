@@ -8,7 +8,6 @@ public class reserveAndPayInstore {
     private trolleyPage trolleyPage = new trolleyPage();
     private productDescriptionPage productDescriptionPage = new productDescriptionPage();
 
-
     @When("^I enter Postcode\"([^\"]*)\"$")
     public void i_enter_Postcode(String expected) {
         trolleyPage.enterPostcode(expected);
@@ -17,11 +16,6 @@ public class reserveAndPayInstore {
     @When("^I click collection$")
     public void i_click_collection() {
         trolleyPage.clickCollection();
-    }
-
-    // @When("^I select store\"([^\"]*)\"$")
-    public void i_select_store(String expected) {
-        trolleyPage.selectStore();
     }
 
     @When("^I click continue$")

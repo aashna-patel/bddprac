@@ -16,5 +16,3 @@ Feature: reservation and Pay In-Store
     And I select a store
     And I click continue
     And I click Reserve And Pay in-store
-
-

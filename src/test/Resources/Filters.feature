@@ -51,9 +51,3 @@ Feature: filter
     When I search for product "nike"
     And I apply filter type "Holdalls" and price "£15 - £20"
     Then I should be able to see "Holdall" and "£15 - £20"
-
-
-
-
-
-

@@ -20,6 +20,7 @@ public class addToTrolleySteps {
         String actual = trolleyPage.getProductInTrolley();
         assertThat(actual, startsWith(product));
     }
+
     @When("^I click add to trolley$")
     public void i_click_add_to_trolley() {
         trolleyPage.addToTrolley();
@@ -55,5 +56,10 @@ public class addToTrolleySteps {
     @When("^I increase the quantity on product description page to \"([^\"]*)\"$")
     public void i_increase_the_quantity_on_product_description_page_to(String expected) {
         productDescriptionPage.increaseQuantity(expected);
+    }
+    @Then("^I should be able to see \"([^\"]*)\" in Trolley$")
+    public void i_should_be_able_to_see_in_Trolley(String product)  {
+        String actual= trolleyPage.productList();
+        hasItems(product);
     }
 }

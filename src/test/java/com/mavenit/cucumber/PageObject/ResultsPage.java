@@ -180,7 +180,7 @@ public class ResultsPage extends DriverManager {
     }
 
     public void selectTwoFilters(String type, String price) {
-        driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         selectTypeFilter(type);
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         selectPriceFilter(price);
@@ -206,6 +206,3 @@ public class ResultsPage extends DriverManager {
         }
     }
 }
-
-
-
