@@ -2,6 +2,7 @@ package com.mavenit.cucumber.PageObject;
 
 import com.mavenit.cucumber.Driver.DriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -24,7 +25,7 @@ public class ResultsPage extends DriverManager {
     @FindBy(css = "a[data-test='component-product-card-title']")
     private List<WebElement> categorySelection;
 
-    @FindBy(css = ".Checkboxstyles__LabelValue-e3lxpy-6.fOQrQk")
+    @FindBy(css = "label[name='type'] .fOQrQk")
     //css= "label[data-test^='filter-type']")
     private List<WebElement> typeWebElements;
 
@@ -97,7 +98,7 @@ public class ResultsPage extends DriverManager {
     }
 
     public void selectTypeFilter(String typeOption) {
-        driver.findElement(By.cssSelector("div[data-facet='type']>.Accordionstyles__ButtonLink-pegw6j-3.bRQRVq")).click();
+        driver.findElement(By.cssSelector("div[data-facet='type']> button[data-test='component-accordion-button-show-more']")).sendKeys(Keys.ENTER);
         for (WebElement typeFilter : typeWebElements) {
             String availableTypes = typeFilter.getText();
             if (availableTypes.equalsIgnoreCase(typeOption)) {
@@ -117,7 +118,8 @@ public class ResultsPage extends DriverManager {
     }
 
     public void selectCapacityFilter(String capacityOption) {
-        driver.findElement(By.cssSelector("div[data-facet='backpack capacity (l)']>.Accordionstyles__ButtonLink-pegw6j-3.bRQRVq")).click();
+        driver.findElement(By.cssSelector("div[data-facet='price']>.Accordionstyles__ButtonLink-pegw6j-3.bRQRVq")).click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         for (WebElement capacityFilter : capacityWebElements) {
             String availableCapacity = capacityFilter.getText();
             if (availableCapacity.equalsIgnoreCase(capacityOption)) {
@@ -178,7 +180,9 @@ public class ResultsPage extends DriverManager {
     }
 
     public void selectTwoFilters(String type, String price) {
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         selectTypeFilter(type);
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         selectPriceFilter(price);
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }
@@ -202,6 +206,3 @@ public class ResultsPage extends DriverManager {
         }
     }
 }
-
-
-

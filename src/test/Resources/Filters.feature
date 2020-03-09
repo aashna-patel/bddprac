@@ -21,8 +21,8 @@ Feature: filter
   Scenario: filter by type
     Given I am on homepage
     When I search for product "nike"
-    And I apply filter type "Armbands"
-    Then I should see refined results of type "Armbands"
+    And I apply filter type "Holdalls"
+    Then I should see refined results of type "Holdall"
 
   @BackPackCapacityFilter
   Scenario: filter by backpack capacity
@@ -50,10 +50,4 @@ Feature: filter
     Given I am on homepage
     When I search for product "nike"
     And I apply filter type "Holdalls" and price "£15 - £20"
-    Then I should be able to see "£15 - £20" and "Holdall"
-
-
-
-
-
-
+    Then I should be able to see "Holdall" and "£15 - £20"

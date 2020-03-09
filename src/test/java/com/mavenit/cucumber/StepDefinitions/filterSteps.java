@@ -17,7 +17,7 @@ import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.core.Every.everyItem;
 
 
-public class FilterSteps {
+public class filterSteps {
 
     private ResultsPage resultsPage = new ResultsPage();
 
