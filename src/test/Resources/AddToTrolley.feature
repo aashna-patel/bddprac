@@ -3,7 +3,7 @@ Feature: adding product to trolley
   I want to add product to the trolley
   So that I can buy the product I desire
 
-  @basket
+  @basket @AddToTrolley
   Scenario: adding one product to trolley
     Given I am on homepage
     When I search for product "nike"
@@ -13,7 +13,7 @@ Feature: adding product to trolley
     And I click go to trolley
     Then I should be able to see product "Apple Watch Nike S5 GPS 40mm" in trolley
 
-  @quantityTest
+  @quantityTest @AddToTrolley
   Scenario: increasing the quantity in trolley
     Given I am on homepage
     When I search for product "adidas"
@@ -24,7 +24,7 @@ Feature: adding product to trolley
     And I increase the quantity "2"
     Then I should be able to see refined quantity size "2"
 
-  @quantityTest2
+  @quantityTest2 @AddToTrolley
   Scenario: increasing the quantity of products on product description page
     Given I am on homepage
     When I search for product "Adidas"
@@ -34,7 +34,7 @@ Feature: adding product to trolley
     And I click go to trolley
     Then I should be able to see refined quantity size "3"
 
-  @addTwoProducts
+  @addTwoProducts @AddToTrolley
   Scenario: adding two different products to trolley
     Given I am on homepage
     When I search for product "adidas"
@@ -48,7 +48,7 @@ Feature: adding product to trolley
     Then I should be able to see "2" products in trolley
     And I should be able to see "Adidas Power V 25.75L Backpack - Grey" and "Huawei Watch GT 2 Smart Watch" in Trolley
 
-  @addToBasket
+  @addToBasket @AddToTrolley
   Scenario Outline:adding multiple products
     Given I am on homepage
     When I search for product <BrandName>

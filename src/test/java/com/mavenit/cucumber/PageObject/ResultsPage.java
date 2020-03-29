@@ -1,13 +1,13 @@
 package com.mavenit.cucumber.PageObject;
 
 import com.mavenit.cucumber.Driver.DriverManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
+import gherkin.lexer.Th;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.security.Key;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -50,9 +50,9 @@ public class ResultsPage extends DriverManager {
     @FindBy(css = ".color-label")
     private List<WebElement> colourWebElements;
 
-    @FindBy(css = ".filter-list")
+    @FindBy(css = "li[data-el='filter-list__item']")
     private List<WebElement> colourSelection;
-
+//
     @FindBy(css = ".ProductCardstyles__Title-l8f8q8-12")
     private List<WebElement> productWebElements;
 
@@ -139,7 +139,13 @@ public class ResultsPage extends DriverManager {
     }
 
     public void selectPriceFilter(String priceOption) {
-        driver.findElement(By.cssSelector("div[data-facet='price']>.Accordionstyles__ButtonLink-pegw6j-3.bRQRVq")).click();
+       try {
+           WebElement showMore= driver.findElement(By.cssSelector("div[data-facet='price']>.Accordionstyles__ButtonLink-pegw6j-3.bRQRVq"));
+           showMore.click();
+       }
+       catch (Exception ignored){
+       }
+        // driver.findElement(By.cssSelector("div[data-facet='price']>.Accordionstyles__ButtonLink-pegw6j-3.bRQRVq")).click();
         for (WebElement price : priceWebElements) {
             String availableFilter = price.getText();
             if (availableFilter.equalsIgnoreCase(priceOption)) {
@@ -158,10 +164,12 @@ public class ResultsPage extends DriverManager {
         return priceList;
     }
 
-    public void selectColourFilter(String colourOption) {
-        driver.findElement(By.cssSelector("div[data-facet='colour']> .Accordionstyles__Button-pegw6j-2.gJFbvj")).click();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+    public void selectColourFilter(String colourOption)  {
+       // WebDriverWait wait= new WebDriverWait(driver,30);
+       // wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[data-facet='colour']> .Accordionstyles__Button-pegw6j-2.gJFbvj"))).sendKeys(Keys.ENTER);
+       // driver.findElement(By.cssSelector("div[data-facet='colour']> .Accordionstyles__Button-pegw6j-2.gJFbvj")).sendKeys(Keys.ENTER);
         driver.findElement(By.cssSelector("div[data-facet='colour']>.Accordionstyles__ButtonLink-pegw6j-3.bRQRVq")).click();
+        //wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[data-facet='colour']>.Accordionstyles__ButtonLink-pegw6j-3.bRQRVq"))).click();
         for (WebElement colour : colourWebElements) {
             String colourFilter = colour.getText();
             if (colourFilter.equalsIgnoreCase(colourOption)) {
@@ -169,6 +177,7 @@ public class ResultsPage extends DriverManager {
             }
         }
     }
+  //  div[data-facet='colour']> .Accordionstyles__Button-pegw6j-2.gJFbvj- click colour div[data-facet='colour']>.Accordionstyles__ButtonLink-pegw6j-3.bRQRVq
 
     public List<String> getColourFilter() {
         List<String> colourList = new ArrayList<>();
@@ -182,9 +191,7 @@ public class ResultsPage extends DriverManager {
     public void selectTwoFilters(String type, String price) {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         selectTypeFilter(type);
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         selectPriceFilter(price);
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }
 
     public List<String> TwoFilters() {

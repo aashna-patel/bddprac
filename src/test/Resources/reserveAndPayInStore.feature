@@ -3,7 +3,6 @@ Feature: reservation and Pay In-Store
   I want to be able to reserve and pay in-store
   So that I can reserve and buy a product which I desire
 
-
   @ReserveAndPayin-store
   Scenario:
     Given I am on homepage

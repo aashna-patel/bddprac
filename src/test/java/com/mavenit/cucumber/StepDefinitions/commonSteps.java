@@ -29,4 +29,9 @@ public class commonSteps {
     public void i_select_a_product(String product) {
         resultsPage.selectRandomProduct(product);
     }
+
+    @When("^I click account$")
+    public void i_click_account() {
+        homePage.clickAccount();
+    }
 }

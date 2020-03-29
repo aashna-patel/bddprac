@@ -32,23 +32,23 @@ public class DriverManager {
                 driver = new FirefoxDriver();
                 break;
             default:
-                //try {
-                //  remoteRun();
+              // try {
+                //   remoteRun();
                 //} catch (MalformedURLException e) {
-                //  e.printStackTrace();
+                 //   e.printStackTrace();
                 //}
 
-                WebDriverManager.chromedriver().setup();
+               WebDriverManager.chromedriver().setup();
                 driver = new ChromeDriver();
                 break;
         }
     }
-    // public void remoteRun() throws MalformedURLException {
-    //   DesiredCapabilities cap= new DesiredCapabilities();
-    // cap.setBrowserName("chrome");
-    //WebDriverManager.chromedriver().setup();
-    //driver= new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), cap);
-    //}
+
+    public void remoteRun() throws MalformedURLException {
+        DesiredCapabilities cap = new DesiredCapabilities();
+        cap.setBrowserName("chrome");
+        driver = new RemoteWebDriver(new URL("http://localhost:7777/grid/console/wd/hub"), cap);
+    }
 
     public void maxBrowser() {
         driver.manage().window().maximize();

@@ -16,6 +16,6 @@ public class Hooks {
         driverManager.navigateTo("https://www.argos.co.uk/");
         driverManager.applyImplicitWait();
     }
-   @After
+//   @After
     public void tearDown(){ driverManager.closeBrowser(); }
 }
