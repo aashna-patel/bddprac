@@ -1,6 +1,7 @@
 package com.mavenit.cucumber.PageObject;
 
 import com.mavenit.cucumber.Driver.DriverManager;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,5 +17,8 @@ public class HomePage extends DriverManager {
     public void doSearch(String item) {
         SearchBox.sendKeys(item);
         SearchBox.sendKeys(Keys.ENTER);
+    }
+    public void clickAccount(){
+        driver.findElement(By.cssSelector("a[data-test='account']")).click();
     }
 }

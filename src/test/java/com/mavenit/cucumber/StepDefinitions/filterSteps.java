@@ -80,6 +80,7 @@ public class filterSteps {
 
     @When("^I apply filter type \"([^\"]*)\" and price \"([^\"]*)\"$")
     public void i_apply_filter_type_and_price(String type, String price) {
+
         resultsPage.selectTwoFilters(type, price);
     }
 
