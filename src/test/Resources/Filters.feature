@@ -3,12 +3,12 @@ Feature: filter
   I want to apply filters
   So that I can find desired product
 
-  @ReviewFilter @f
+  @ReviewFilter @f @ignore
   Scenario: filter by review
     Given I am on homepage
     When I search for product "Nike"
-    And I apply filter review "2or more"
-    Then I should be able to see refined results review "2"
+    And I apply filter review "4or more"
+    Then I should be able to see refined results review "4"
 
   @CategoryFilter @f
   Scenario: filter by category

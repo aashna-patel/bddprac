@@ -27,19 +27,29 @@ public class DriverManager {
                 WebDriverManager.iedriver().setup();
                 driver = new InternetExplorerDriver();
                 break;
-            case "firefox":
-                WebDriverManager.firefoxdriver().setup();
-                driver = new FirefoxDriver();
-                break;
+            //case "chrome":
+              //  WebDriverManager.chromedriver().setup();
+                //driver = new ChromeDriver();
+                //break;
+           // case "firefox":
+             //   WebDriverManager.firefoxdriver().setup();
+               // driver= new FirefoxDriver();
+               // break;
             default:
-              // try {
+
+                // try {
                 //   remoteRun();
                 //} catch (MalformedURLException e) {
-                 //   e.printStackTrace();
+                //   e.printStackTrace();
                 //}
 
-               WebDriverManager.chromedriver().setup();
-                driver = new ChromeDriver();
+
+               // WebDriverManager.chromedriver().setup();
+                //driver = new ChromeDriver();
+                //break;
+
+                WebDriverManager.firefoxdriver().setup();
+                driver= new FirefoxDriver();
                 break;
         }
     }
@@ -59,7 +69,7 @@ public class DriverManager {
     }
 
     public void applyImplicitWait() {
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(45, TimeUnit.SECONDS);
     }
 
     public void closeBrowser() {

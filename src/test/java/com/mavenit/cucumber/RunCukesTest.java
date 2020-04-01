@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources",
         dryRun = false,
         strict = false,
-        tags =  "@invalidlogin",
+        tags =  "~@ignore",
         plugin = {"json:target/cucumber.json"}
 )
 public class RunCukesTest {
