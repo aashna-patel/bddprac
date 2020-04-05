@@ -17,7 +17,7 @@ Feature: trolley products counter
     Scenario: adding multiple products
       Given I am on homepage
       When I search for product "adidas"
-      And I select a product "Adidas Power V 25.75L Backpack - Grey"
+      And I select a product "Adidas Boxing Focus Mitt Pads - Black and Gold"
       And I click add to trolley
       And I click continue Shopping
       And I search for product "chandelier"

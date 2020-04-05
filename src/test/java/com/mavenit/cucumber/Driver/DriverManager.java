@@ -44,13 +44,13 @@ public class DriverManager {
                 //}
 
 
-               // WebDriverManager.chromedriver().setup();
-                //driver = new ChromeDriver();
-                //break;
-
-                WebDriverManager.firefoxdriver().setup();
-                driver= new FirefoxDriver();
+                WebDriverManager.chromedriver().setup();
+                driver = new ChromeDriver();
                 break;
+
+             //   WebDriverManager.firefoxdriver().setup();
+               // driver= new FirefoxDriver();
+                //break;
         }
     }
 
@@ -69,7 +69,7 @@ public class DriverManager {
     }
 
     public void applyImplicitWait() {
-        driver.manage().timeouts().implicitlyWait(45, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
     }
 
     public void closeBrowser() {

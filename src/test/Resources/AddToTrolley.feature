@@ -38,26 +38,26 @@ Feature: adding product to trolley
   Scenario: adding two different products to trolley
     Given I am on homepage
     When I search for product "adidas"
-    And I select a product "Adidas Power V 25.75L Backpack - Grey"
+    And I select a product "Adidas Boxing Focus Mitt Pads - Black and Gold"
     And I click add to trolley
     And I click continue Shopping
-    And I search for product "watch"
+    And I search for another product "watch"
     And I select a product "Huawei Watch GT 2 Smart Watch"
     And I click add to trolley
     And I click go to trolley
     Then I should be able to see "2" products in trolley
-    And I should be able to see "Adidas Power V 25.75L Backpack - Grey" and "Huawei Watch GT 2 Smart Watch" in Trolley
+    And I should be able to see "Adidas Boxing Focus Mitt Pads - Black and Gold" and "Huawei Watch GT 2 Smart Watch" in Trolley
 
   @addToBasket @AddToTrolley
   Scenario Outline:adding multiple products
     Given I am on homepage
-    When I search for product <BrandName>
+    When I search for product "<BrandName>"
     And I select a product <product>
     And I click add to trolley
     And I click go to trolley
     Then I should be able to see <product> in Trolley
     Examples:
       | BrandName | product                                          |
-      | "nike"    | "Nike Radiate Club Phantom 24L Backpack - Beige" |
-      | "adidas"  | "Adidas Euro Size 5 Football - White"            |
-      | "puma"    | "Puma Core Base 14L Backpack - Black and Gold"   |
+      | nike      | "Nike Radiate Club Phantom 24L Backpack - Beige" |
+      | adidas    | "Adidas Euro Size 5 Football - White"            |
+      | puma      | "Puma Core Base 14L Backpack - Black and Gold"   |
