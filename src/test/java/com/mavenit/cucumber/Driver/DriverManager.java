@@ -27,14 +27,14 @@ public class DriverManager {
                 WebDriverManager.iedriver().setup();
                 driver = new InternetExplorerDriver();
                 break;
-            case "chrome":
-                WebDriverManager.chromedriver().setup();
-                driver = new ChromeDriver();
+            // case "chrome":
+            //   WebDriverManager.chromedriver().setup();
+            // driver = new ChromeDriver();
+            //break;
+            case "firefox":
+                WebDriverManager.firefoxdriver().setup();
+                driver = new FirefoxDriver();
                 break;
-            // case "firefox":
-            //   WebDriverManager.firefoxdriver().setup();
-            // driver= new FirefoxDriver();
-            // break;
             default:
 
                 // try {
@@ -43,14 +43,13 @@ public class DriverManager {
                 //   e.printStackTrace();
                 //}
 
-
-                // WebDriverManager.chromedriver().setup();
-                //driver = new ChromeDriver();
-                //break;
-
-                WebDriverManager.firefoxdriver().setup();
-                driver = new FirefoxDriver();
+                WebDriverManager.chromedriver().setup();
+                driver = new ChromeDriver();
                 break;
+
+            //  WebDriverManager.firefoxdriver().setup();
+            //driver = new FirefoxDriver();
+            //break;
         }
     }
 
