@@ -1,6 +1,5 @@
 package com.mavenit.cucumber.StepDefinitions;
 
-import com.mavenit.cucumber.PageObject.HomePage;
 import com.mavenit.cucumber.PageObject.ResultsPage;
 import com.mavenit.cucumber.PageObject.trolleyPage;
 import com.mavenit.cucumber.PageObject.productDescriptionPage;
@@ -14,8 +13,6 @@ public class addToTrolleySteps {
     private trolleyPage trolleyPage = new trolleyPage();
     private ResultsPage resultsPage = new ResultsPage();
     private productDescriptionPage productDescriptionPage = new productDescriptionPage();
-
-    private HomePage homePage = new HomePage();
 
     @Then("^I should be able to see product \"([^\"]*)\" in trolley$")
     public void i_should_be_able_to_see_product_in_trolley(String product) {
@@ -51,7 +48,7 @@ public class addToTrolleySteps {
 
     @Then("^I should be able to see \"([^\"]*)\" and \"([^\"]*)\" in Trolley$")
     public void i_should_be_able_to_see_and_in_Trolley(String product1, String product2) {
-        String actual = trolleyPage.productList();
+        trolleyPage.productList();
         hasItems(product1, product2);
     }
 
@@ -62,12 +59,28 @@ public class addToTrolleySteps {
 
     @Then("^I should be able to see \"([^\"]*)\" in Trolley$")
     public void i_should_be_able_to_see_in_Trolley(String product) {
-        String actual = trolleyPage.productList();
+        trolleyPage.productList();
         hasItems(product);
     }
 
     @When("^I search for another product \"([^\"]*)\"$")
     public void i_search_for_another_product(String item) {
         productDescriptionPage.searchAnotherTerm(item);
+    }
+
+    @When("^I select a random product$")
+    public void i_select_a_random_product()  {
+        resultsPage.selectRandomProduct();
+    }
+
+    @When("^I remember that name$")
+    public void i_remember_that_name() {
+        resultsPage.getProductName();
+    }
+
+    @Then("^I should be able to see that product in trolley$")
+    public void i_should_be_able_to_see_that_product_in_trolley() {
+        trolleyPage.getTrolleyList();
+        hasItems(1);
     }
 }

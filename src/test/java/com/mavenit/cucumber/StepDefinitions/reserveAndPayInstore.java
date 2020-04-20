@@ -1,12 +1,10 @@
 package com.mavenit.cucumber.StepDefinitions;
 
-import com.mavenit.cucumber.PageObject.productDescriptionPage;
 import com.mavenit.cucumber.PageObject.trolleyPage;
 import cucumber.api.java.en.When;
 
 public class reserveAndPayInstore {
     private trolleyPage trolleyPage = new trolleyPage();
-    private productDescriptionPage productDescriptionPage = new productDescriptionPage();
 
     @When("^I enter Postcode\"([^\"]*)\"$")
     public void i_enter_Postcode(String expected) {

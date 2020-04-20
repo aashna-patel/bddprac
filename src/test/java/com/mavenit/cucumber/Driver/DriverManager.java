@@ -27,36 +27,30 @@ public class DriverManager {
                 WebDriverManager.iedriver().setup();
                 driver = new InternetExplorerDriver();
                 break;
-            // case "chrome":
-            //   WebDriverManager.chromedriver().setup();
-            // driver = new ChromeDriver();
-            //break;
+
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
                 driver = new FirefoxDriver();
                 break;
             default:
 
-                // try {
-                //   remoteRun();
+                //  try {
+                //  remoteRun();
                 //} catch (MalformedURLException e) {
-                //   e.printStackTrace();
+                //  e.printStackTrace();
                 //}
 
                 WebDriverManager.chromedriver().setup();
                 driver = new ChromeDriver();
                 break;
-
-            //  WebDriverManager.firefoxdriver().setup();
-            //driver = new FirefoxDriver();
-            //break;
         }
     }
 
     public void remoteRun() throws MalformedURLException {
         DesiredCapabilities cap = new DesiredCapabilities();
         cap.setBrowserName("chrome");
-        driver = new RemoteWebDriver(new URL("http://localhost:7777/grid/console/wd/hub"), cap);
+        URL ip = new URL("http://localhost:4444/grid/console#/wd/hub");
+        driver = new RemoteWebDriver(ip, cap);
     }
 
     public void maxBrowser() {
@@ -68,7 +62,7 @@ public class DriverManager {
     }
 
     public void applyImplicitWait() {
-        driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(45, TimeUnit.SECONDS);
     }
 
     public void closeBrowser() {

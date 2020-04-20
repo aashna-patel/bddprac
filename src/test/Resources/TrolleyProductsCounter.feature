@@ -3,7 +3,7 @@ Feature: trolley products counter
   I want to be able to see the trolley size
   So that I can see how many products are present in Trolley
 
-  @TrolleyProductsCounter
+  @TrolleyProductCounter
   Scenario: increasing quantity of the product
     Given I am on homepage
     When I search for product "adidas"
@@ -13,7 +13,7 @@ Feature: trolley products counter
     And I increase the quantity "3"
     Then I should be able to see "3" products in trolley
 
-    @TrolleyProductCounter2
+    @TrolleyProductCounter
     Scenario: adding multiple products
       Given I am on homepage
       When I search for product "adidas"

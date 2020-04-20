@@ -22,12 +22,12 @@ public class filterSteps {
     private ResultsPage resultsPage = new ResultsPage();
 
     @When("^I apply filter review \"([^\"]*)\"$")
-    public void i_apply_filter_review(String filter) {
+    public void i_apply_filter_review(String filter) throws InterruptedException {
         resultsPage.selectFilter(filter);
     }
 
     @Then("^I should be able to see refined results review \"([^\"]*)\"$")
-    public void i_should_be_able_to_see_refined_results_review(double expected) {
+    public void i_should_be_able_to_see_refined_results_review(double expected){
         List<Double> actual = resultsPage.getProductRating();
         assertThat(actual, everyItem(is(greaterThanOrEqualTo(expected))));
     }
@@ -44,7 +44,7 @@ public class filterSteps {
     }
 
     @When("^I apply filter type \"([^\"]*)\"$")
-    public void i_apply_filter_type(String typeOption) {
+    public void i_apply_filter_type(String typeOption) throws InterruptedException {
         resultsPage.selectTypeFilter(typeOption);
     }
 
@@ -67,7 +67,7 @@ public class filterSteps {
     }
 
     @When("^I apply filter price \"([^\"]*)\"$")
-    public void i_apply_filter_price(String priceOption) {
+    public void i_apply_filter_price(String priceOption) throws InterruptedException {
         resultsPage.selectPriceFilter(priceOption);
 
     }
@@ -79,14 +79,14 @@ public class filterSteps {
     }
 
     @When("^I apply filter type \"([^\"]*)\" and price \"([^\"]*)\"$")
-    public void i_apply_filter_type_and_price(String type, String price) {
+    public void i_apply_filter_type_and_price(String type, String price) throws InterruptedException {
 
         resultsPage.selectTwoFilters(type, price);
     }
 
     @Then("^I should be able to see \"([^\"]*)\" and \"([^\"]*)\"$")
     public void i_should_be_able_to_see_and(String price, String type) {
-        List<String> actual = resultsPage.TwoFilters();
+        resultsPage.TwoFilters();
         hasItems(price, type);
     }
 

@@ -1,13 +1,11 @@
 package com.mavenit.cucumber.PageObject;
 
 import com.mavenit.cucumber.Driver.DriverManager;
-import gherkin.lexer.Th;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.security.Key;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -52,11 +50,24 @@ public class ResultsPage extends DriverManager {
 
     @FindBy(css = "li[data-el='filter-list__item']")
     private List<WebElement> colourSelection;
-//
+
     @FindBy(css = ".ProductCardstyles__Title-l8f8q8-12")
     private List<WebElement> productWebElements;
 
-    public void selectFilter(String filterOption) {
+    @FindBy(css = ".h2.product-name-main span[data-test='product-title']")
+    private List<WebElement> productSelection;
+
+    @FindBy(css = "a[data-test='component-product-card-title']")
+    private List<WebElement> chooseProduct;
+
+    @FindBy (css = ".h2.product-name-main span[data-test='product-title']")
+    private List<WebElement> prodductselection;
+
+    public ResultsPage() {
+    }
+
+
+    public void selectFilter(String filterOption) throws InterruptedException {
         new WebDriverWait(driver, 10).until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector(".findability-facet__rating-label"), 5));
         for (WebElement review : ratingWebElements) {
             String availableFilter = review.getText();
@@ -65,6 +76,7 @@ public class ResultsPage extends DriverManager {
                 break;
             }
         }
+        Thread.sleep(5000);
     }
 
     public List<Double> getProductRating() {
@@ -78,7 +90,11 @@ public class ResultsPage extends DriverManager {
     }
 
     public void selectCategoryFilter(String categoryOption) {
-        driver.findElement(By.cssSelector("div[data-facet='category']>.Accordionstyles__ButtonLink-pegw6j-3.bRQRVq")).click();
+        try {
+            WebElement showMore = driver.findElement(By.cssSelector("div[data-facet='category']>.Accordionstyles__ButtonLink-pegw6j-3.bRQRVq"));
+            showMore.click();
+        } catch (Exception ignored) {
+        }
         for (WebElement categoryFilter : filterWebElements) {
             String availableCategory = categoryFilter.getText();
             if (availableCategory.equalsIgnoreCase(categoryOption)) {
@@ -97,14 +113,19 @@ public class ResultsPage extends DriverManager {
         return categoryList;
     }
 
-    public void selectTypeFilter(String typeOption) {
-        driver.findElement(By.cssSelector("div[data-facet='type']> button[data-test='component-accordion-button-show-more']")).sendKeys(Keys.ENTER);
+    public void selectTypeFilter(String typeOption) throws InterruptedException {
+        try {
+            WebElement showMore = driver.findElement(By.cssSelector("div[data-facet='type']> button[data-test='component-accordion-button-show-more']"));
+            showMore.sendKeys(Keys.ENTER);
+        } catch (Exception ignored) {
+        }
         for (WebElement typeFilter : typeWebElements) {
             String availableTypes = typeFilter.getText();
             if (availableTypes.equalsIgnoreCase(typeOption)) {
                 typeFilter.click();
                 break;
             }
+            Thread.sleep(5000);
         }
     }
 
@@ -138,13 +159,12 @@ public class ResultsPage extends DriverManager {
         return capacityList;
     }
 
-    public void selectPriceFilter(String priceOption) {
-       try {
-           WebElement showMore= driver.findElement(By.cssSelector("div[data-facet='price']>.Accordionstyles__ButtonLink-pegw6j-3.bRQRVq"));
-           showMore.click();
-       }
-       catch (Exception ignored){
-       }
+    public void selectPriceFilter(String priceOption) throws InterruptedException {
+        try {
+            WebElement showMore = driver.findElement(By.cssSelector("div[data-facet='price']>.Accordionstyles__ButtonLink-pegw6j-3.bRQRVq"));
+            showMore.click();
+        } catch (Exception ignored) {
+        }
         // driver.findElement(By.cssSelector("div[data-facet='price']>.Accordionstyles__ButtonLink-pegw6j-3.bRQRVq")).click();
         for (WebElement price : priceWebElements) {
             String availableFilter = price.getText();
@@ -152,6 +172,7 @@ public class ResultsPage extends DriverManager {
                 price.click();
                 break;
             }
+            Thread.sleep(5000);
         }
     }
 
@@ -164,10 +185,7 @@ public class ResultsPage extends DriverManager {
         return priceList;
     }
 
-    public void selectColourFilter(String colourOption)  {
-       // WebDriverWait wait= new WebDriverWait(driver,30);
-       // wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[data-facet='colour']> .Accordionstyles__Button-pegw6j-2.gJFbvj"))).sendKeys(Keys.ENTER);
-       // driver.findElement(By.cssSelector("div[data-facet='colour']> .Accordionstyles__Button-pegw6j-2.gJFbvj")).sendKeys(Keys.ENTER);
+    public void selectColourFilter(String colourOption) {
         driver.findElement(By.cssSelector("div[data-facet='colour']>.Accordionstyles__ButtonLink-pegw6j-3.bRQRVq")).click();
         //wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[data-facet='colour']>.Accordionstyles__ButtonLink-pegw6j-3.bRQRVq"))).click();
         for (WebElement colour : colourWebElements) {
@@ -177,8 +195,8 @@ public class ResultsPage extends DriverManager {
             }
         }
     }
-  //  div[data-facet='colour']> .Accordionstyles__Button-pegw6j-2.gJFbvj- click colour div[data-facet='colour']>.Accordionstyles__ButtonLink-pegw6j-3.bRQRVq
 
+    //  div[data-facet='colour']> .Accordionstyles__Button-pegw6j-2.gJFbvj- click colour div[data-facet='colour']>.Accordionstyles__ButtonLink-pegw6j-3.bRQRVq
     public List<String> getColourFilter() {
         List<String> colourList = new ArrayList<>();
         for (WebElement colour : colourSelection) {
@@ -188,7 +206,7 @@ public class ResultsPage extends DriverManager {
         return colourList;
     }
 
-    public void selectTwoFilters(String type, String price) {
+    public void selectTwoFilters(String type, String price) throws InterruptedException {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         selectTypeFilter(type);
         selectPriceFilter(price);
@@ -203,7 +221,7 @@ public class ResultsPage extends DriverManager {
         return filterList;
     }
 
-    public void selectRandomProduct(String randomProduct) {
+    public void selectAProduct(String randomProduct) {
         for (WebElement product : productWebElements) {
             String availableProducts = product.getText();
             if (availableProducts.equalsIgnoreCase(randomProduct)) {
@@ -212,4 +230,22 @@ public class ResultsPage extends DriverManager {
             }
         }
     }
+
+    public void selectRandomProduct(){
+        List <WebElement> availableProducts = driver.findElements(By.cssSelector("a[data-test=\"component-product-card-title\"]"));
+        availableProducts.get(3).click();
+    }
+    public List<String> getProductName() {
+        List<String> categoryList = new ArrayList<>();
+        for (WebElement product :prodductselection ) {
+            String productName = product.getText();
+            categoryList.add(productName);
+        }
+        return categoryList;
+    }
+
 }
+
+
+
+

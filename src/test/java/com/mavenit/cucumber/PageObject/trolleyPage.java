@@ -12,8 +12,8 @@ import java.util.concurrent.TimeUnit;
 
 
 public class trolleyPage extends DriverManager {
-    @FindBy(css = ".Buttonstyles__Button-q93iwm-2.cnJFzc")
-    private List<WebElement> shopSelection;
+    @FindBy (css = "a[data-e2e=\"product-name\"]")
+    private List<WebElement> trolleySelection;
 
     public void addToTrolley() {
         driver.findElement(By.cssSelector("button[data-test='component-att-button']")).sendKeys(Keys.ENTER);
@@ -72,6 +72,14 @@ public class trolleyPage extends DriverManager {
     public void checkAvailability(String postcode) {
         driver.findElement(By.cssSelector(".lg-5--none [placeholder='Enter postcode or town']")).sendKeys(postcode);
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+    }
+    public List<String> getTrolleyList(){
+        List <String> trolleyList = new ArrayList<>();
+        for (WebElement trolley: trolleySelection){
+            String trolleyName = trolley.getText();
+            trolleyList.add(trolleyName);
+        }
+        return trolleyList;
     }
 }
 //.lg-5--none [placeholder="Enter postcode or town"] for enter postcode
