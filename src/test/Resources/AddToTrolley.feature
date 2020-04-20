@@ -7,17 +7,16 @@ Feature: adding product to trolley
   Scenario: adding one product to trolley
     Given I am on homepage
     When I search for product "nike"
-    And I apply filter category "Smart watches"
-    And I select a product "Apple Watch Nike S5 GPS 40mm"
+    And I apply filter type "Holdalls"
+    And I select a product "Nike Brasilia Small Holdall - Pink"
     And I click add to trolley
     And I click go to trolley
-    Then I should be able to see product "Apple Watch Nike S5 GPS 40mm" in trolley
+    Then I should be able to see product "Nike Brasilia Small Holdall - Pink" in trolley
 
   @quantityTest @AddToTrolley
   Scenario: increasing the quantity in trolley
     Given I am on homepage
     When I search for product "adidas"
-    And I apply filter category "Footballs"
     And I select a product "Adidas Starlancer VI Size 5 Football - Blue"
     And I click add to trolley
     And I click go to trolley
@@ -47,6 +46,17 @@ Feature: adding product to trolley
     And I click go to trolley
     Then I should be able to see "2" products in trolley
     And I should be able to see "Adidas Boxing Focus Mitt Pads - Black and Gold" and "Huawei Watch GT 2 Smart Watch" in Trolley
+
+    @addRandomProduct @AddToTrolley
+      Scenario: adding random product to trolley
+      Given I am on homepage
+      When I search for product "Nike"
+      And I select a random product
+      And I remember that name
+      And I click add to trolley
+      And I click go to trolley
+      Then I should be able to see that product in trolley
+
 
   @addToBasket @AddToTrolley
   Scenario Outline:adding multiple products
